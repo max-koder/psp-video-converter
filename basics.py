@@ -15,8 +15,8 @@ class VideoPreset:
     def convert_to_ffmpeg_settings(self) -> Dict[str, any]:
         return {
             'vf': f'scale={self.width}:{self.height},format=yuv420p',
-            'profile': f'{self.profile}',
-            'level': f'{self.profile}',
+            'profile:v': f'{self.profile}',
+            'level': f'{self.level}',
             'audio_bitrate': f'{self.audio_bitrate}'
         }
 

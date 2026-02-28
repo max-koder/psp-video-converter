@@ -25,7 +25,7 @@ PRESETS: List[VideoPreset] = [
     VideoPreset(
         key = '3',
         name = 'Highest Quality Audio Bitrate',
-        description = 'Gives the best audio Bitrate on which PSP can work, but takes more space',
+        description = 'Gives the best audio bitrate on which PSP can work, but takes more space',
         width = 480,
         height = 272,
         profile = 'baseline',
