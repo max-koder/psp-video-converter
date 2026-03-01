@@ -15,21 +15,21 @@ PRESETS: List[VideoPreset] = [
     VideoPreset(
         key = '2',
         name = 'Medium Quality',
-        description = '480x272, 160kbps',
-        width = 480,
-        height = 272,
-        profile = 'baseline',
-        level = '3.0',
-        audio_bitrate = '160k'
-    ),
-    VideoPreset(
-        key = '3',
-        name = 'Highest Quality',
         description = '480x272, 192kbps',
         width = 480,
         height = 272,
         profile = 'baseline',
         level = '3.0',
         audio_bitrate = '192k'
+    ),
+    VideoPreset(
+        key = '3',
+        name = 'Highest Quality',
+        description = '480x272, 256kbps',
+        width = 480,
+        height = 272,
+        profile = 'baseline',
+        level = '3.0',
+        audio_bitrate = '256k'
     )
 ]
