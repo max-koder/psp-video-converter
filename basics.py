@@ -19,4 +19,3 @@ class VideoPreset:
             'level': f'{self.level}',
             'audio_bitrate': f'{self.audio_bitrate}'
         }
-
