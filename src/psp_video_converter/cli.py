@@ -1,5 +1,5 @@
 from pathlib import Path
-from presets import PRESETS
+from .presets import PRESETS
 from rich import box
 from rich.console import Console
 from rich.panel import Panel
@@ -96,4 +96,8 @@ def make_conversion():
     else:
         sys.exit(0)
 
-make_conversion()
+def main():
+    make_conversion()
+
+if __name__ == "__main__":
+    main()

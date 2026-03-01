@@ -1,4 +1,4 @@
-from basics import VideoPreset
+from .basics import VideoPreset
 from typing import List
 
 PRESETS: List[VideoPreset] = [

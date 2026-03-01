@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict
+from typing import Dict, Any
 
 @dataclass
 class VideoPreset:
@@ -12,7 +12,7 @@ class VideoPreset:
     level: str
     audio_bitrate: str
 
-    def convert_to_ffmpeg_settings(self) -> Dict[str, any]:
+    def convert_to_ffmpeg_settings(self) -> Dict[str, Any]:
         return {
             'vf': f'scale={self.width}:{self.height},format=yuv420p',
             'profile:v': f'{self.profile}',
