@@ -1,5 +1,6 @@
 from pathlib import Path
 from presets import PRESETS
+from rich import box
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -32,7 +33,7 @@ def preset_choice():
     console.print(Panel("[bold]Welcome to PSP Video Converter![/bold]\n\n"
           "To start work with application, choose preset for video conversion.\n"))
 
-    table = Table(title = "Presets", padding = (1, 2), min_width=60)
+    table = Table(title = "Presets", min_width=60, box=box.SIMPLE_HEAVY)
 
     table.add_column("ID", justify="left", style="cyan", no_wrap=True)
     table.add_column("Preset", style="magenta")

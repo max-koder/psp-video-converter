@@ -4,8 +4,8 @@ from typing import List
 PRESETS: List[VideoPreset] = [
     VideoPreset(
         key = '1',
-        name = 'Low Quality Audio Bitrate',
-        description = 'Have the lowest audio bitrate, but file will take less space',
+        name = 'Low Quality',
+        description = '480x272, 128kbps',
         width = 480,
         height = 272,
         profile = 'baseline',
@@ -14,8 +14,8 @@ PRESETS: List[VideoPreset] = [
     ),
     VideoPreset(
         key = '2',
-        name = 'Medium Quality Audio Bitrate',
-        description = 'Have medium audio bitrate',
+        name = 'Medium Quality',
+        description = '480x272, 160kbps',
         width = 480,
         height = 272,
         profile = 'baseline',
@@ -24,8 +24,8 @@ PRESETS: List[VideoPreset] = [
     ),
     VideoPreset(
         key = '3',
-        name = 'Highest Quality Audio Bitrate',
-        description = 'Gives the best audio bitrate on which PSP can work, but takes more space',
+        name = 'Highest Quality',
+        description = '480x272, 192kbps',
         width = 480,
         height = 272,
         profile = 'baseline',
