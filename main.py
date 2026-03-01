@@ -29,7 +29,7 @@ def get_input_output_data():
 def preset_choice():
 
     console.print(Panel("[bold]Welcome to PSP Video Converter![/bold]\n\n"
-          "To start work with application, choose presets for video conversion.\n"))
+          "To start work with application, choose preset for video conversion.\n"))
 
     table = Table(title = "Presets", padding = (1, 2), min_width=60)
 
@@ -55,7 +55,7 @@ def make_conversion(preset_chosen ,inp_out_list):
 
     output_options = PRESETS[preset_chosen-1].convert_to_ffmpeg_settings()
 
-    ffmpeg.input(input_path).output(output_path, **output_options).run()
+    ffmpeg.input(input_path).output(output_path, **output_options).run(quiet=True)
 
     print("Conversion completed")
 
