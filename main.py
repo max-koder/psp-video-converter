@@ -22,6 +22,7 @@ def get_input_data():
     while True:
         console.print('[bold]YOUR INPUT PATH[/bold]: ', end=""),
         user_input = Path(input().strip())
+        console.print("\n")
 
         if not user_input.is_file():
             console.print("[red][bold]ERROR: Incorrect input. Please try again.[/red][/bold]")
@@ -37,6 +38,7 @@ def get_output_data():
 
         try:
             user_input.parent.mkdir(parents = True, exist_ok = True),
+            console.print("\n")
             return str(user_input)
 
         except PermissionError:
