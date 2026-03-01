@@ -4,6 +4,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 import ffmpeg
+import sys
 
 console = Console()
 
@@ -57,7 +58,16 @@ def make_conversion(preset_chosen ,inp_out_list):
 
     ffmpeg.input(input_path).output(output_path, **output_options).run(quiet=True)
 
-    print("Conversion completed")
+    console.print("[green]Conversion completed[/green]")
+    console.print("Do you want convert more videos?\n"
+                  "1. Yes\n"
+                  "2. No\n")
+    console.print("Please, use [red]numbers[/red] to give answer")
+    console.print('[bold]ANSWER[/bold]: ', end='')
+    if int(input()) == 1:
+        make_conversion(preset_choice(), get_input_output_data())
+    else:
+        sys.exit(0)
 
 make_conversion(preset_choice(), get_input_output_data())
 
