@@ -9,24 +9,43 @@ import sys
 
 console = Console()
 
-def get_input_output_data():
-    inp_out_list = []
 
+def show_input_start_data():
     console.print('Enter [red][bold]FULL[/red][/bold] path to your input video'),
-    console.print('[green]Example[/green]: /username/Videos/input_video_name.mp4'),
-    console.print('[bold]YOUR INPUT PATH[/bold]: ', end=""),
+    console.print('[green]Example[/green]: /username/Videos/input_video_name.mp4')
 
-    inp_out_list.append(str(Path(input().strip())))
-    console.print('\n')
-
+def show_output_start_data():
     console.print('Enter [red][bold]FULL[/red][/bold] path where you want to get your output video'),
-    console.print('[green]Example[/green]: /username/Videos/output_video_name.mp4'),
-    console.print('[bold]YOUR OUTPUT PATH[/bold]: ', end=""),
+    console.print('[green]Example[/green]: /username/Videos/output_video_name.mp4')
 
-    inp_out_list.append(str(Path(input().strip())))
-    console.print('\n')
+def get_input_data():
+    while True:
+        console.print('[bold]YOUR INPUT PATH[/bold]: ', end=""),
+        user_input = Path(input().strip())
 
-    return inp_out_list
+        if not user_input.is_file():
+            console.print("[red][bold]ERROR: Incorrect input. Please try again.[/red][/bold]")
+            console.print('\n')
+            continue
+
+        return str(user_input)
+
+def get_output_data():
+    while True:
+        console.print('[bold]YOUR OUTPUT PATH[/bold]: ', end=""),
+        user_input = Path(input().strip())
+
+        try:
+            user_input.parent.mkdir(parents = True, exist_ok = True),
+            return str(user_input)
+
+        except PermissionError:
+            console.print("[red]ERROR: Can't write file on this location. Please choose another one.[/red]")
+            continue
+
+        except Exception as e:
+            console.print(f"[red]ERROR: {e}. Please try again")
+            continue
 
 def preset_choice():
 
@@ -44,18 +63,23 @@ def preset_choice():
 
     console.print(table)
     console.print("To choose preset write it [red][bold]ID[/red][/bold]: ", end="")
-    preset_chosen = int(input())
+    chosen_by_user_preset = int(input())
     console.print('\n')
 
-    return preset_chosen
+    return chosen_by_user_preset
 
 
-def make_conversion(preset_chosen ,inp_out_list):
+def make_conversion():
 
-    input_path = inp_out_list[0]
-    output_path = inp_out_list[1]
+    chosen_by_user_preset = preset_choice()
 
-    output_options = PRESETS[preset_chosen-1].convert_to_ffmpeg_settings()
+    show_input_start_data()
+    input_path = get_input_data()
+
+    show_output_start_data()
+    output_path = get_output_data()
+
+    output_options = PRESETS[chosen_by_user_preset - 1].convert_to_ffmpeg_settings()
 
     ffmpeg.input(input_path).output(output_path, **output_options).run(quiet=True)
 
@@ -66,12 +90,8 @@ def make_conversion(preset_chosen ,inp_out_list):
     console.print("Please, use [red]numbers[/red] to give answer")
     console.print('[bold]ANSWER[/bold]: ', end='')
     if int(input()) == 1:
-        make_conversion(preset_choice(), get_input_output_data())
+        make_conversion()
     else:
         sys.exit(0)
 
-make_conversion(preset_choice(), get_input_output_data())
-
-
-
-
+make_conversion()
