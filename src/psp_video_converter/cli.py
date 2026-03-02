@@ -58,12 +58,12 @@ def get_output_data():
             console.print(f"[red]ERROR: {e}. Please try again")
             continue
 
-def preset_choice():
-
+def start_screen():
     console.print(Panel("[bold]Welcome to PSP Video Converter![/bold]\n\n"
-          "To start work with application, choose preset for video conversion.\n"
+                        "To start work with application, choose preset for video conversion.\n"
                         "To close app, write 'quit'\n"))
 
+def preset_choice():
     table = Table(title = "Presets", min_width=60, box=box.SIMPLE_HEAVY)
 
     table.add_column("ID", justify="left", style="cyan", no_wrap=True)
@@ -74,16 +74,22 @@ def preset_choice():
         table.add_row(f"{presets.key}", f"{presets.name}", f"{presets.description}")
 
     console.print(table)
-    console.print("To choose preset write it [red][bold]ID[/red][/bold]: ", end="")
-    chosen_by_user_preset = input()
 
-    if str(chosen_by_user_preset) == 'quit':
-        console.print('[purple] Have a nice day! [/purple]')
-        sys.exit(0)
+    while True:
+        console.print("To choose preset write it [red][bold]ID[/red][/bold]: ", end="")
+        chosen_by_user_preset = input()
 
-    console.print('\n')
+        if chosen_by_user_preset not in ['1', '2', '3', 'quit']:
+            console.print("[red][bold]ERROR: You wrote incorrect value. Please write another.[/red][/bold]\n")
+            continue
 
-    return int(chosen_by_user_preset)
+        if chosen_by_user_preset == 'quit':
+            console.print('[purple] Have a nice day! [/purple]')
+            sys.exit(0)
+
+        console.print('\n')
+
+        return int(chosen_by_user_preset)
 
 
 def make_conversion():
@@ -112,6 +118,7 @@ def make_conversion():
         sys.exit(0)
 
 def main():
+    start_screen()
     make_conversion()
 
 if __name__ == "__main__":
