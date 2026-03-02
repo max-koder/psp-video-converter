@@ -22,6 +22,11 @@ def get_input_data():
     while True:
         console.print('[bold]YOUR INPUT PATH[/bold]: ', end=""),
         user_input = Path(input().strip())
+
+        if str(user_input) == 'quit':
+            console.print('[purple] Have a nice day! [/purple]')
+            sys.exit(0)
+
         console.print("\n")
 
         if not user_input.is_file():
@@ -35,6 +40,10 @@ def get_output_data():
     while True:
         console.print('[bold]YOUR OUTPUT PATH[/bold]: ', end=""),
         user_input = Path(input().strip())
+
+        if str(user_input) == 'quit':
+            console.print('[purple] Have a nice day! [/purple]')
+            sys.exit(0)
 
         try:
             user_input.parent.mkdir(parents = True, exist_ok = True),
@@ -52,7 +61,8 @@ def get_output_data():
 def preset_choice():
 
     console.print(Panel("[bold]Welcome to PSP Video Converter![/bold]\n\n"
-          "To start work with application, choose preset for video conversion.\n"))
+          "To start work with application, choose preset for video conversion.\n"
+                        "To close app, write 'quit'\n"))
 
     table = Table(title = "Presets", min_width=60, box=box.SIMPLE_HEAVY)
 
@@ -65,10 +75,15 @@ def preset_choice():
 
     console.print(table)
     console.print("To choose preset write it [red][bold]ID[/red][/bold]: ", end="")
-    chosen_by_user_preset = int(input())
+    chosen_by_user_preset = input()
+
+    if str(chosen_by_user_preset) == 'quit':
+        console.print('[purple] Have a nice day! [/purple]')
+        sys.exit(0)
+
     console.print('\n')
 
-    return chosen_by_user_preset
+    return int(chosen_by_user_preset)
 
 
 def make_conversion():
